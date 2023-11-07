@@ -9,7 +9,7 @@ namespace WebpConverter.Models
             var exFileInfo = new ExFileInfo(inputFileInfo);
             exFileInfo.SetExtension(".png");
 
-            var option = $"--o \"{exFileInfo.FileInfo.FullName}\"";
+            var option = $"-o \"{exFileInfo.FileInfo.FullName}\"";
             return $"{option} \"{inputFileInfo.FullName}\"";
         }
     }

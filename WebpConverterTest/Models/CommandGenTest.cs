@@ -14,7 +14,7 @@ namespace WebpConverterTest.Models
 
             var webpFullName = new FileInfo("test.webp").FullName;
             var pngFullName = new FileInfo("test.png").FullName;
-            Assert.That(CommandGen.GetCommand(file), Is.EqualTo($"--o \"{pngFullName}\" \"{webpFullName}\""));
+            Assert.That(CommandGen.GetCommand(file), Is.EqualTo($"-o \"{pngFullName}\" \"{webpFullName}\""));
         }
     }
 }
