@@ -1,4 +1,5 @@
 ﻿<Window
+    AllowDrop="True"
     Height="350"
     Title="{Binding Title}"
     Width="600"
@@ -8,11 +9,16 @@
     x:Class="WebpConverter.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:WebpConverter.Models"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:viewModels="clr-namespace:WebpConverter.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <i:Interaction.Behaviors>
+        <models:DragAndDropBehavior />
+    </i:Interaction.Behaviors>
 
     <Grid Margin="2">
         <Grid.RowDefinitions>
