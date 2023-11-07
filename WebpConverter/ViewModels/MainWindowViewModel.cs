@@ -1,4 +1,6 @@
-﻿using Prism.Mvvm;
+﻿using System.Collections.Generic;
+using System.IO;
+using Prism.Mvvm;
 
 namespace WebpConverter.ViewModels
 {
@@ -6,5 +8,7 @@ namespace WebpConverter.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         public string Title => "webp converter";
+
+        public List<FileInfo> WebpFiles { get; set; }
     }
 }
