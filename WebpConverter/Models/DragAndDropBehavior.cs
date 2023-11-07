@@ -35,7 +35,7 @@ namespace WebpConverter.Models
             {
                 vm.WebpFiles =
                     files.Where(f => Path.GetExtension(f) == ".webp")
-                        .Select(f => new FileInfo(f)).ToList();
+                        .Select(f => new ExFileInfo(new FileInfo(f))).ToList();
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using Prism.Mvvm;
+using WebpConverter.Models;
 
 namespace WebpConverter.ViewModels
 {
@@ -9,6 +9,7 @@ namespace WebpConverter.ViewModels
     {
         public string Title => "webp converter";
 
-        public List<FileInfo> WebpFiles { get; set; }
+        // DragAndDropBehavior からデータが入力される。
+        public List<ExFileInfo> WebpFiles { get; set; }
     }
 }
