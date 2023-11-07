@@ -31,12 +31,34 @@
                 <DataTemplate DataType="{x:Type models:ExFileInfo}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="{Binding Converted}" />
-                        <TextBlock Grid.Column="1" Text="{Binding FileInfo.Name}" />
+                        <TextBlock Grid.Column="0">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Converted}" Value="True">
+                                            <Setter Property="Text" Value="変換済み" />
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding Converted}" Value="False">
+                                            <Setter Property="Text" Value="未変換" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
+                        <Border
+                            Background="Black"
+                            Grid.Column="1"
+                            Margin="10,0"
+                            Width="1" />
+
+                        <TextBlock Grid.Column="2" Text="{Binding FileInfo.Name}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
