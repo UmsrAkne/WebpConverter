@@ -45,7 +45,10 @@
         <StackPanel Grid.Row="1" Margin="2">
 
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Content="convert" Width="70" />
+                <Button
+                    Command="{Binding ConvertWebpToPngCommand}"
+                    Content="convert"
+                    Width="70" />
             </StackPanel>
         </StackPanel>
     </Grid>

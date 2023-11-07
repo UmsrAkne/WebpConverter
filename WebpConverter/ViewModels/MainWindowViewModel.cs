@@ -23,6 +23,33 @@ namespace WebpConverter.ViewModels
 
         public DelegateCommand ConvertWebpToPngCommand => new DelegateCommand(() =>
         {
+            var webpDecoder = new FileInfo("dwebp.exe");
+
+            if (!webpDecoder.Exists)
+            {
+                return;
+            }
+
+            WebpFiles.ForEach(f =>
+            {
+                var pr = new Process()
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = webpDecoder.FullName,
+                        Arguments = CommandGen.GetCommand(f.FileInfo),
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                    },
+                    EnableRaisingEvents = true,
+                };
+
+                pr.Exited += (sender, e) =>
+                {
+                    f.Converted = true;
+                };
+
+                pr.Start();
+            });
         });
     }
 }
