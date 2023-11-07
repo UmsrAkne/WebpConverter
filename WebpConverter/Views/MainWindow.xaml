@@ -1,7 +1,7 @@
 ﻿<Window
     Height="350"
     Title="{Binding Title}"
-    Width="525"
+    Width="600"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     mc:Ignorable="d"
     prism:ViewModelLocator.AutoWireViewModel="True"
@@ -9,11 +9,38 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:WebpConverter.Models"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:viewModels="clr-namespace:WebpConverter.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+    <Grid Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListBox Grid.Row="0" ItemsSource="{Binding WebpFiles}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:ExFileInfo}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding Converted}" />
+                        <TextBlock Grid.Column="1" Text="{Binding FileInfo.Name}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="1" Margin="2">
+
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="convert" Width="70" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
