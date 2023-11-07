@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Prism.Commands;
 using Prism.Mvvm;
 using WebpConverter.Models;
 
@@ -11,5 +12,9 @@ namespace WebpConverter.ViewModels
 
         // DragAndDropBehavior からデータが入力される。
         public List<ExFileInfo> WebpFiles { get; set; }
+
+        public DelegateCommand ConvertWebpToPngCommand => new DelegateCommand(() =>
+        {
+        });
     }
 }
