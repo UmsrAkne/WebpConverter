@@ -72,6 +72,14 @@
 
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button
+                    Command="{Binding ClearCommand}"
+                    Content="clear"
+                    IsEnabled="{Binding Processing, Converter={StaticResource BoolNegativeConverter}}"
+                    Width="50" />
+
+                <Border Margin="3,0" Width="0" />
+
+                <Button
                     Command="{Binding ConvertWebpToPngCommand}"
                     Content="convert"
                     IsEnabled="{Binding Processing, Converter={StaticResource BoolNegativeConverter}}"

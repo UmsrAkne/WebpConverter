@@ -60,5 +60,10 @@ namespace WebpConverter.ViewModels
                 pr.Start();
             });
         });
+
+        public DelegateCommand ClearCommand => new DelegateCommand(() =>
+        {
+            WebpFiles = new List<ExFileInfo>();
+        });
     }
 }
