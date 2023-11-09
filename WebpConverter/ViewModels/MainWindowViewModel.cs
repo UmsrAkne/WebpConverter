@@ -13,10 +13,22 @@ namespace WebpConverter.ViewModels
     {
         private List<ExFileInfo> webpFiles = new List<ExFileInfo>();
         private bool processing;
+        private string decoderLocation = string.Empty;
+
+        public MainWindowViewModel()
+        {
+            DecoderLocation = new FileInfo("dwebp.exe").FullName;
+        }
 
         public string Title => "webp converter";
 
         public bool Processing { get => processing; set => SetProperty(ref processing, value); }
+
+        public string DecoderLocation
+        {
+            get => decoderLocation;
+            set => SetProperty(ref decoderLocation, value);
+        }
 
         // DragAndDropBehavior からデータが入力される。
         public List<ExFileInfo> WebpFiles
@@ -27,7 +39,7 @@ namespace WebpConverter.ViewModels
 
         public DelegateCommand ConvertWebpToPngCommand => new DelegateCommand(() =>
         {
-            var webpDecoder = new FileInfo("dwebp.exe");
+            var webpDecoder = new FileInfo(DecoderLocation);
 
             if (!webpDecoder.Exists)
             {

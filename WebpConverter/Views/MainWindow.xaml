@@ -2,7 +2,7 @@
     AllowDrop="True"
     Height="350"
     Title="{Binding Title}"
-    Width="600"
+    Width="700"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     mc:Ignorable="d"
     prism:ViewModelLocator.AutoWireViewModel="True"
@@ -26,11 +26,18 @@
 
     <Grid Margin="2">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="0" ItemsSource="{Binding WebpFiles}">
+        <DockPanel Grid.Row="0" Margin="2">
+            <TextBlock Text="decoder location : " />
+            <Border Margin="3,0" Width="0" />
+            <TextBox DockPanel.Dock="Right" Text="{Binding DecoderLocation, UpdateSourceTrigger=PropertyChanged}" />
+        </DockPanel>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding WebpFiles}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:ExFileInfo}">
                     <Grid>
@@ -68,7 +75,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Grid.Row="1" Margin="2">
+        <StackPanel Grid.Row="2" Margin="2">
 
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <Button
