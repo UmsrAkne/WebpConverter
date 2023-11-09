@@ -16,6 +16,10 @@
     xmlns:viewModels="clr-namespace:WebpConverter.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Window.Resources>
+        <models:BoolNegativeConverter x:Key="BoolNegativeConverter" />
+    </Window.Resources>
+
     <i:Interaction.Behaviors>
         <models:DragAndDropBehavior />
     </i:Interaction.Behaviors>
@@ -70,6 +74,7 @@
                 <Button
                     Command="{Binding ConvertWebpToPngCommand}"
                     Content="convert"
+                    IsEnabled="{Binding Processing, Converter={StaticResource BoolNegativeConverter}}"
                     Width="70" />
             </StackPanel>
         </StackPanel>

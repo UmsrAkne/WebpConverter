@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Prism.Commands;
 using Prism.Mvvm;
 using WebpConverter.Models;
@@ -11,8 +12,11 @@ namespace WebpConverter.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private List<ExFileInfo> webpFiles;
+        private bool processing;
 
         public string Title => "webp converter";
+
+        public bool Processing { get => processing; set => SetProperty(ref processing, value); }
 
         // DragAndDropBehavior からデータが入力される。
         public List<ExFileInfo> WebpFiles
@@ -46,8 +50,13 @@ namespace WebpConverter.ViewModels
                 pr.Exited += (sender, e) =>
                 {
                     f.Converted = true;
+                    if (WebpFiles.All(w => w.Converted))
+                    {
+                        Processing = false;
+                    }
                 };
 
+                Processing = true;
                 pr.Start();
             });
         });
