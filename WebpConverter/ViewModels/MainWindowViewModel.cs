@@ -11,7 +11,7 @@ namespace WebpConverter.ViewModels
     // ReSharper disable once ClassNeverInstantiated.Global
     public class MainWindowViewModel : BindableBase
     {
-        private List<ExFileInfo> webpFiles;
+        private List<ExFileInfo> webpFiles = new List<ExFileInfo>();
         private bool processing;
 
         public string Title => "webp converter";
