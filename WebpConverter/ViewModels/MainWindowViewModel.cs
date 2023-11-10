@@ -14,6 +14,7 @@ namespace WebpConverter.ViewModels
         private List<ExFileInfo> webpFiles = new List<ExFileInfo>();
         private bool processing;
         private string decoderLocation = string.Empty;
+        private string outputDirectoryPath;
 
         public MainWindowViewModel()
         {
@@ -34,7 +35,21 @@ namespace WebpConverter.ViewModels
         public List<ExFileInfo> WebpFiles
         {
             get => webpFiles;
-            set => SetProperty(ref webpFiles, value);
+            set
+            {
+                if (value != null && value.Count > 0)
+                {
+                    OutputDirectoryPath = value.FirstOrDefault()?.FileInfo.Directory?.FullName;
+                }
+
+                SetProperty(ref webpFiles, value);
+            }
+        }
+
+        public string OutputDirectoryPath
+        {
+            get => outputDirectoryPath;
+            set => SetProperty(ref outputDirectoryPath, value);
         }
 
         public DelegateCommand ConvertWebpToPngCommand => new DelegateCommand(() =>
@@ -46,14 +61,24 @@ namespace WebpConverter.ViewModels
                 return;
             }
 
+            var destDir = new DirectoryInfo(OutputDirectoryPath);
+            if (!destDir.Exists)
+            {
+                destDir = null;
+            }
+
             WebpFiles.ForEach(f =>
             {
+                var arg = destDir == null
+                    ? CommandGen.GetCommand(f.FileInfo)
+                    : CommandGen.GetCommand(f.FileInfo, destDir);
+
                 var pr = new Process()
                 {
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = webpDecoder.FullName,
-                        Arguments = CommandGen.GetCommand(f.FileInfo),
+                        Arguments = arg,
                         WindowStyle = ProcessWindowStyle.Hidden,
                     },
                     EnableRaisingEvents = true,

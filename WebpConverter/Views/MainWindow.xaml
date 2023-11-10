@@ -31,12 +31,19 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0" Margin="2">
-            <TextBlock Text="decoder location : " />
-            <Border Margin="3,0" Width="0" />
-            <TextBox DockPanel.Dock="Right" Text="{Binding DecoderLocation, UpdateSourceTrigger=PropertyChanged}" />
-        </DockPanel>
+        <StackPanel>
+            <DockPanel Margin="2">
+                <TextBlock Text="decoder location : " />
+                <Border Margin="3,0" Width="0" />
+                <TextBox DockPanel.Dock="Right" Text="{Binding DecoderLocation, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
 
+            <DockPanel Margin="2">
+                <TextBlock Text="output directory path : " />
+                <Border Margin="3,0" Width="0" />
+                <TextBox DockPanel.Dock="Right" Text="{Binding OutputDirectoryPath, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+        </StackPanel>
         <ListBox Grid.Row="1" ItemsSource="{Binding WebpFiles}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:ExFileInfo}">
