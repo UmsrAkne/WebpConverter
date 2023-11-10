@@ -14,6 +14,7 @@ namespace WebpConverter.ViewModels
         private List<ExFileInfo> webpFiles = new List<ExFileInfo>();
         private bool processing;
         private string decoderLocation = string.Empty;
+        private string outputDirectoryPath;
 
         public MainWindowViewModel()
         {
@@ -34,7 +35,21 @@ namespace WebpConverter.ViewModels
         public List<ExFileInfo> WebpFiles
         {
             get => webpFiles;
-            set => SetProperty(ref webpFiles, value);
+            set
+            {
+                if (value != null && value.Count > 0)
+                {
+                    OutputDirectoryPath = value.FirstOrDefault()?.FileInfo.Directory?.FullName;
+                }
+
+                SetProperty(ref webpFiles, value);
+            }
+        }
+
+        public string OutputDirectoryPath
+        {
+            get => outputDirectoryPath;
+            set => SetProperty(ref outputDirectoryPath, value);
         }
 
         public DelegateCommand ConvertWebpToPngCommand => new DelegateCommand(() =>
