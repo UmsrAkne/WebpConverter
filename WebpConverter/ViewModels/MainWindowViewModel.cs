@@ -14,7 +14,7 @@ namespace WebpConverter.ViewModels
         private List<ExFileInfo> webpFiles = new List<ExFileInfo>();
         private bool processing;
         private string decoderLocation = string.Empty;
-        private string outputDirectoryPath;
+        private string outputDirectoryPath = string.Empty;
 
         public MainWindowViewModel()
         {
@@ -61,8 +61,8 @@ namespace WebpConverter.ViewModels
                 return;
             }
 
-            var destDir = new DirectoryInfo(OutputDirectoryPath);
-            if (!destDir.Exists)
+            var destDir = Path.IsPathRooted(OutputDirectoryPath) ? new DirectoryInfo(OutputDirectoryPath) : null;
+            if (destDir != null && !destDir.Exists)
             {
                 destDir = null;
             }
