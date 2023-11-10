@@ -61,14 +61,24 @@ namespace WebpConverter.ViewModels
                 return;
             }
 
+            var destDir = new DirectoryInfo(OutputDirectoryPath);
+            if (!destDir.Exists)
+            {
+                destDir = null;
+            }
+
             WebpFiles.ForEach(f =>
             {
+                var arg = destDir == null
+                    ? CommandGen.GetCommand(f.FileInfo)
+                    : CommandGen.GetCommand(f.FileInfo, destDir);
+
                 var pr = new Process()
                 {
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = webpDecoder.FullName,
-                        Arguments = CommandGen.GetCommand(f.FileInfo),
+                        Arguments = arg,
                         WindowStyle = ProcessWindowStyle.Hidden,
                     },
                     EnableRaisingEvents = true,
