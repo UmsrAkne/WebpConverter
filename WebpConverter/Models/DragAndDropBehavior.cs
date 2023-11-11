@@ -27,6 +27,7 @@ namespace WebpConverter.Models
             AssociatedObject.Drop -= AssociatedObject_Drop;
         }
 
+        // ReSharper disable once MemberCanBeMadeStatic.Local
         private void AssociatedObject_Drop(object sender, DragEventArgs e)
         {
             // ファイルパスの一覧の配列
@@ -39,6 +40,7 @@ namespace WebpConverter.Models
             }
         }
 
+        // ReSharper disable once MemberCanBeMadeStatic.Local
         private void AssociatedObject_PreviewDragOver(object sender, DragEventArgs e)
         {
             e.Effects = DragDropEffects.Copy;

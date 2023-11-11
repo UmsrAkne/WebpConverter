@@ -21,6 +21,7 @@ namespace WebpConverter.ViewModels
             DecoderLocation = new FileInfo("dwebp.exe").FullName;
         }
 
+        // ReSharper disable once MemberCanBeMadeStatic.Global
         public string Title => "webp converter";
 
         public bool Processing { get => processing; set => SetProperty(ref processing, value); }
@@ -73,7 +74,7 @@ namespace WebpConverter.ViewModels
                     ? CommandGen.GetCommand(f.FileInfo)
                     : CommandGen.GetCommand(f.FileInfo, destDir);
 
-                var pr = new Process()
+                var pr = new Process
                 {
                     StartInfo = new ProcessStartInfo
                     {

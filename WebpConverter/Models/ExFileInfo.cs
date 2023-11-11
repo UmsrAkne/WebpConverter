@@ -17,7 +17,7 @@ namespace WebpConverter.Models
 
         public bool Converted { get => converted; set => SetProperty(ref converted, value); }
 
-        public FileInfo FileInfo { get => fileInfo; set => SetProperty(ref fileInfo, value); }
+        public FileInfo FileInfo { get => fileInfo; private set => SetProperty(ref fileInfo, value); }
 
         /// <summary>
         ///     内部で保持している FileInfo を入力した拡張子のファイルに書き換えます。
