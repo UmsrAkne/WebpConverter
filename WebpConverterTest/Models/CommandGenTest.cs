@@ -24,7 +24,7 @@ namespace WebpConverterTest.Models
             var dir = new DirectoryInfo(@"c:\temp2");
             var command = CommandGen.GetCommand(file, dir);
 
-            Assert.That(command, Is.EqualTo($@"-o ""c:\temp2\test.png"" ""c:\temp\test.webp"""));
+            Assert.That(command, Is.EqualTo(@"-o ""c:\temp2\test.png"" ""c:\temp\test.webp"""));
         }
     }
 }
